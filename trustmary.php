@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: Trustmary
- * Plugin URI: https://trustmary.com/
+ * Plugin URI:  https://trustmary.com/
  * Description: Display Trustmary Widgets and Experiments on your site.
  * Version:     1.0.0
- * Author:      Samu Aaltonen
- * Author URI:
+ * Author:      Trustmary
+ * Author URI:  https://trustmary.com/
  * License:
  * License URI:
  */
