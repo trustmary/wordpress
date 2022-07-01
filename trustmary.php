@@ -62,9 +62,9 @@ class Trustmary_Widgets
             deactivate_plugins(plugin_basename(__FILE__));
             wp_die('Please upgrade PHP. This plugin requires openssl, which is available from PHP 5.3+.', 'Plugin dependency', array('back_link' => true));
         }
-        if (!defined('AUTH_KEY') || AUTH_KEY === '') {
+        if (!defined('SECURE_AUTH_KEY') || SECURE_AUTH_KEY === '' || !defined('SECURE_AUTH_SALT') || SECURE_AUTH_SALT === '') {
             deactivate_plugins(plugin_basename(__FILE__));
-            wp_die('AUTH_KEY cannot be empty. See wp-config.php.', 'Plugin dependency', array('back_link' => true));
+            wp_die('SECURE_AUTH_KEY and SECURE_AUTH_SALT cannot be empty. See wp-config.php for more information.', 'Plugin dependency', array('back_link' => true));
         }
     }
 
