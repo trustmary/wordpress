@@ -75,6 +75,9 @@ class Trustmary_Widgets
     /**
      * Checks if necessary functions are available in current PHP build. If not,
      * prevents the activation.
+     * 
+     * Also checks if SECURE_AUTH_KEY and SECURE_AUTH_SALT have been set 
+     * (should be on all up-to-date WP installations).
      *
      * @return void
      */
@@ -91,7 +94,7 @@ class Trustmary_Widgets
     }
 
     /**
-     * Clears plugin config on plugin deactivation.
+     * Removes plugin configuration on plugin deactivation.
      *
      * @return void
      */
