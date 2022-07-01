@@ -56,6 +56,8 @@ class Trustmary_Settings
 
         add_action('admin_menu', array($this, 'add_settings_page'));
         add_action('admin_init', array($this, 'init_setting_fields'));
+
+        add_action('pre_update_option_' . $config_idenfifier, array($this, 'update_settings'), 20, 2);
     }
 
     /**
@@ -180,6 +182,28 @@ class Trustmary_Settings
     }
 
     /**
+     * Filters values before saving. Encrypts given API key.
+     *
+     * @param array $updated_values
+     * @param array $old_values
+     * @return array
+     */
+    public function update_settings($updated_values, $old_values)
+    {
+        foreach ($updated_values as $key => &$value) {
+            if ($key === 'api_key') {
+                if (substr_count($value, '*')) {
+                    $value = $old_values[$key];
+                    continue;
+                }
+                $value = Trustmary_Helper::encrypt($value);
+            }
+        }
+
+        return $updated_values;
+    }
+
+    /**
      * Callback function for API key input field
      *
      * @param array $args
@@ -187,10 +211,10 @@ class Trustmary_Settings
      */
     public function callback_input_apikey($args)
     {
-        $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] : '';
+        $val = isset($this->_config[$args['name']]) ? Trustmary_Helper::obfuscate(Trustmary_Helper::decrypt($this->_config[$args['name']])) : '';
     ?>
         <p>
-            <input type="text" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="<?php echo $val; ?>">
+            <input type="text" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="<?php echo $val; ?>" style="min-width:280px;">
         </p>
     <?php
     }
@@ -208,18 +232,18 @@ class Trustmary_Settings
     ?>
         <p>
             <label>
-                <input type="radio" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="1" <?php echo $val ? 'checked="checked"' : ''; ?>>
+                <input type="radio" class="toggle-script-block" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="1" <?php echo $val ? 'checked="checked"' : ''; ?>>
                 <span><?php _e('Yes (Scripts will be added automatically)', Trustmary_Widgets::$translate_domain); ?></span>
             </label>
         </p>
         <p>
             <label>
-                <input type="radio" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="0" <?php echo !$val ? 'checked="checked"' : ''; ?>>
+                <input type="radio" class="toggle-script-block" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="0" <?php echo !$val ? 'checked="checked"' : ''; ?>>
                 <span><?php _e('No (I want to add scripts myself, see below)', Trustmary_Widgets::$translate_domain); ?></span>
             </label>
         </p>
-        <div id="trustmary-script" style="display: <?php echo !$val ? 'block' : 'none'; ?>;">
-            <textarea name="scripts" disabled><?php echo htmlentities("<script>(function (w,d,s,o,r,js,fjs) {
+        <p id="trustmary-script" style="display: <?php echo !$val ? 'block' : 'none'; ?>;">
+            <textarea name="scripts" style="width: 480px;height:210px;cursor:pointer;" onClick="this.select();" readonly><?php echo htmlentities("<script>(function (w,d,s,o,r,js,fjs) {
     w[r]=w[r]||function() {(w[r].q = w[r].q || []).push(arguments)}
     w[r]('app', '" . $organization_id . "');
     if(d.getElementById(o)) return;
@@ -229,9 +253,21 @@ class Trustmary_Settings
   }(window, document, 'script', 'trustmary-embed', 'tmary'));
 </script>
 "); ?></textarea>
-        </div>
+        </p>
         <script type="text/javascript">
+            const radios = document.querySelectorAll('.toggle-script-block');
+            const script_block = document.getElementById('trustmary-script');
 
+            function toggle_script_block(event) {
+                if (parseInt(this.value) === 1)
+                    script_block.style.display = 'none';
+                else
+                    script_block.style.display = 'block';
+            }
+
+            radios.forEach((el) => {
+                el.addEventListener('change', toggle_script_block);
+            });
         </script>
 <?php
     }
