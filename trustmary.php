@@ -61,6 +61,8 @@ class Trustmary_Widgets
             $this->_config = array();
 
         new Trustmary_Settings($this->_config_idenfifier, $this->_config);
+
+        add_action('wp_head', array($this, 'add_scripts'));
     }
 
     /**
@@ -89,6 +91,27 @@ class Trustmary_Widgets
     public function deactivate()
     {
         delete_option($this->_config_idenfifier);
+    }
+
+    /**
+     * Inserts javascript to WP head if organization ID has been set and add_scripts setting is on.
+     *
+     * @return void
+     */
+    public function add_scripts()
+    {
+        if (!isset($this->_config['organization_id']) || (isset($this->_config['add_scripts']) && !$this->_config['add_scripts']))
+            return;
+
+        echo "<script>(function (w,d,s,o,r,js,fjs) {
+w[r]=w[r]||function() {(w[r].q = w[r].q || []).push(arguments)}
+w[r]('app', '" . $this->_config['organization_id'] . "');
+if(d.getElementById(o)) return;
+js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+js.id = o; js.src = 'https://embed.trustmary.com/embed.js';
+js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+}(window, document, 'script', 'trustmary-embed', 'tmary'));
+</script>";
     }
 }
 
