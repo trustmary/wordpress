@@ -16,6 +16,13 @@ class Trustmary_Settings
     private $_settings_title = 'Trustmary Settings';
 
     /**
+     * Settings menu title
+     *
+     * @var string
+     */
+    private $_settings_menu = 'Settings';
+
+    /**
      * Option group name
      *
      * @var string
@@ -67,9 +74,10 @@ class Trustmary_Settings
      */
     public function add_settings_page()
     {
-        add_options_page(
+        add_submenu_page(
+            'trustmary-dashboard',
             $this->_settings_title,
-            $this->_settings_title,
+            $this->_settings_menu,
             'manage_options',
             $this->_settings_menu_slug,
             array($this, 'create_admin_page')

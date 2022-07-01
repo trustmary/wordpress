@@ -4,3 +4,11 @@
     object-fit: contain;
     padding-top: 7px;
 }
+
+body[class^="toplevel_page_trustmary-"] #wpbody,
+body[class*=" toplevel_page_trustmary-"] #wpbody {
+    background-image: url(../images/logo-icon.svg);
+    background-repeat: no-repeat;
+    background-position: right 20px top 20px;
+    background-size: 30px;
+}

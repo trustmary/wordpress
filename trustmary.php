@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Trustmary Widgets
+ * Plugin Name: Trustmary
  * Plugin URI: https://trustmary.com/
- * Description: 
+ * Description: Display Trustmary Widgets and Experiments on your site.
  * Version:     1.0.0
  * Author:      Samu Aaltonen
  * Author URI:
@@ -61,11 +61,11 @@ class Trustmary_Widgets
         if (!$this->_config)
             $this->_config = array();
 
-        new Trustmary_Settings($this->_config_idenfifier, $this->_config);
-
         add_action('wp_head', array($this, 'add_scripts'));
         add_action('admin_menu', array($this, 'admin_pages'));
         add_action('admin_enqueue_scripts', array($this, 'admin_styles'));
+
+        new Trustmary_Settings($this->_config_idenfifier, $this->_config);
     }
 
     /**
@@ -104,6 +104,11 @@ class Trustmary_Widgets
     public function admin_pages()
     {
         add_menu_page('Trustmary', 'Trustmary', 'manage_options', 'trustmary-dashboard', array('Trustmary_Pages', 'dashboard'), plugins_url('/assets/images/logo-icon.svg', __FILE__), 30);
+        add_submenu_page('trustmary-dashboard', __('Dashboard', Trustmary_Widgets::$translate_domain),  __('Dashboard', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-dashboard', array('Trustmary_Pages', 'dashboard'));
+        add_submenu_page('trustmary-dashboard', __('Popups', Trustmary_Widgets::$translate_domain),  __('Popups', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-popups', array('Trustmary_Pages', 'popups'));
+        add_submenu_page('trustmary-dashboard', __('Inline widgets', Trustmary_Widgets::$translate_domain),  __('Inline widgets', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-inline', array('Trustmary_Pages', 'inline'));
+        add_submenu_page('trustmary-dashboard', __('Experiments', Trustmary_Widgets::$translate_domain),  __('Experiments', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-experiments', array('Trustmary_Pages', 'experiments'));
+        add_submenu_page('trustmary-dashboard', __('Gather reviews', Trustmary_Widgets::$translate_domain),  __('Gather reviews', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-reviews', array('Trustmary_Pages', 'reviews'));
     }
 
     /**
