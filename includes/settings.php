@@ -1,6 +1,11 @@
 <?php
 defined('ABSPATH') or die('No');
 
+/**
+ * Settings class
+ * 
+ * Creates settings page to admin and handles setting updates.
+ */
 class Trustmary_Settings
 {
     /**
@@ -90,6 +95,11 @@ class Trustmary_Settings
 <?php
     }
 
+    /**
+     * Initializes setting fields
+     *
+     * @return void
+     */
     public function init_setting_fields()
     {
         register_setting(
