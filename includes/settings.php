@@ -92,7 +92,7 @@ class Trustmary_Settings
                 ?>
             </form>
         </div>
-<?php
+    <?php
     }
 
     /**
@@ -105,7 +105,10 @@ class Trustmary_Settings
         register_setting(
             $this->_settings_group,
             $this->_config_idenfifier,
-            array($this, 'sanitize')
+            array(
+                'type' => 'array',
+                'sanitize_callback' => array($this, 'sanitize')
+            )
         );
 
         add_settings_section(
@@ -124,7 +127,13 @@ class Trustmary_Settings
             array($this, 'callback_input_apikey'),
             $this->_config_idenfifier,
             $this->_settings_group,
-            array('api_key', __('API key', 'trustmary-widgets'))
+            array(
+                'name' => 'api_key',
+                'label' => __(
+                    'API key',
+                    Trustmary_Widgets::$translate_domain
+                )
+            )
         );
 
         /**
@@ -132,11 +141,17 @@ class Trustmary_Settings
          */
         add_settings_field(
             'add_scripts',
-            __('Add trustmary script automatically', 'trustmary-widgets'),
+            __('Add Trustmary scripts automatically', 'trustmary-widgets'),
             array($this, 'callback_input_addscripts'),
             $this->_config_idenfifier,
             $this->_settings_group,
-            array('add_scripts', __('Add trustmary script automatically', 'trustmary-widgets'))
+            array(
+                'name' => 'add_scripts',
+                'label' => __(
+                    'Add trustmary script automatically',
+                    Trustmary_Widgets::$translate_domain
+                )
+            )
         );
     }
 
@@ -152,12 +167,16 @@ class Trustmary_Settings
     /**
      * Sanitizes input
      *
-     * @param string $input
-     * @return void
+     * @param array $input
+     * @return array
      */
-    public function sanitize($input)
+    public function sanitize($inputs)
     {
-        return sanitize_text_field($input);
+        foreach ($inputs as &$input) {
+            $input = htmlentities(sanitize_text_field($input), ENT_QUOTES);
+        }
+
+        return $inputs;
     }
 
     /**
@@ -168,6 +187,12 @@ class Trustmary_Settings
      */
     public function callback_input_apikey($args)
     {
+        $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] : '';
+    ?>
+        <p>
+            <input type="text" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="<?php echo $val; ?>">
+        </p>
+    <?php
     }
 
     /**
@@ -178,5 +203,36 @@ class Trustmary_Settings
      */
     public function callback_input_addscripts($args)
     {
+        $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] : 1;
+        $organization_id = isset($this->_config['organization_id']) ? $this->_config['organization_id'] : 'ORGANIZATION_ID';
+    ?>
+        <p>
+            <label>
+                <input type="radio" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="1" <?php echo $val ? 'checked="checked"' : ''; ?>>
+                <span><?php _e('Yes (Scripts will be added automatically)', Trustmary_Widgets::$translate_domain); ?></span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="radio" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="0" <?php echo !$val ? 'checked="checked"' : ''; ?>>
+                <span><?php _e('No (I want to add scripts myself, see below)', Trustmary_Widgets::$translate_domain); ?></span>
+            </label>
+        </p>
+        <div id="trustmary-script" style="display: <?php echo !$val ? 'block' : 'none'; ?>;">
+            <textarea name="scripts" disabled><?php echo htmlentities("<script>(function (w,d,s,o,r,js,fjs) {
+    w[r]=w[r]||function() {(w[r].q = w[r].q || []).push(arguments)}
+    w[r]('app', '" . $organization_id . "');
+    if(d.getElementById(o)) return;
+    js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+    js.id = o; js.src = 'https://embed.trustmary.com/embed.js';
+    js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+  }(window, document, 'script', 'trustmary-embed', 'tmary'));
+</script>
+"); ?></textarea>
+        </div>
+        <script type="text/javascript">
+
+        </script>
+<?php
     }
 }
