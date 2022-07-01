@@ -6,7 +6,9 @@
 }
 
 body[class^="toplevel_page_trustmary-"] #wpbody,
-body[class*=" toplevel_page_trustmary-"] #wpbody {
+body[class^="trustmary_page"] #wpbody,
+body[class*=" toplevel_page_trustmary-"] #wpbody,
+body[class*=" trustmary_page"] #wpbody {
     background-image: url(../images/logo-icon.svg);
     background-repeat: no-repeat;
     background-position: right 20px top 20px;
