@@ -63,6 +63,7 @@ class Trustmary_Widgets
         require_once plugin_dir_path(__FILE__) . 'includes/connect.php';
         require_once plugin_dir_path(__FILE__) . 'includes/settings.php';
         require_once plugin_dir_path(__FILE__) . 'includes/pages.php';
+        require_once plugin_dir_path(__FILE__) . 'includes/shortcodes.php';
 
         $this->_config = get_option($this->_config_idenfifier);
         if (!$this->_config)
@@ -73,6 +74,7 @@ class Trustmary_Widgets
         add_action('admin_enqueue_scripts', array($this, 'admin_styles'));
 
         new Trustmary_Settings($this->_config_idenfifier, $this->_config);
+        new Trustmary_Shortcodes();
         $this->_pages = new Trustmary_Pages($this->_config);
     }
 
