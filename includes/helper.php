@@ -12,14 +12,14 @@ class Trustmary_Helper
      *
      * @var string
      */
-    public static $_encryption_method = 'aes-256-cbc';
+    public static $encryption_method = 'aes-256-cbc';
 
     /**
      * Algorithm name for hash value using the HMAC method 
      *
      * @var string
      */
-    public static $_hash_hmac_algo = 'sha3-512';
+    public static $hash_hmac_algo = 'sha3-512';
 
     /**
      * Encrypts given string using SECURE_AUTH_KEY, SECURE_AUTH_SALT, 
@@ -51,6 +51,10 @@ class Trustmary_Helper
         $raw = base64_decode($encrypted);
 
         $initialization_vector_length = openssl_cipher_iv_length(self::$encryption_method);
+
+        if (strlen($raw) < $initialization_vector_length)
+            return '';
+
         $initialization_vector = substr($raw, 0, $initialization_vector_length);
 
         $hmac_part = substr($raw, $initialization_vector_length, 64);
@@ -62,5 +66,15 @@ class Trustmary_Helper
         if (hash_equals($hmac_part, $hmac))
             return $data;
         return '';
+    }
+
+
+    public static function obfuscate($string)
+    {
+        $first_dash = strpos($string, '-');
+        $display_start = substr($string, 0, $first_dash + 1);
+        $obfuscate = preg_replace('/[^-]/', '*', substr($string, $first_dash + 1));
+
+        return $display_start . $obfuscate;
     }
 }
