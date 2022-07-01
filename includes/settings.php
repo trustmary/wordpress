@@ -142,7 +142,7 @@ class Trustmary_Settings
                 'name' => 'api_key',
                 'label' => __(
                     'API key',
-                    Trustmary_Widgets::$translate_domain
+                    'trustmary-widgets'
                 )
             )
         );
@@ -160,7 +160,7 @@ class Trustmary_Settings
                 'name' => 'organization_id',
                 'label' => __(
                     'Organization ID',
-                    Trustmary_Widgets::$translate_domain
+                    'trustmary-widgets'
                 )
             )
         );
@@ -178,7 +178,7 @@ class Trustmary_Settings
                 'name' => 'add_scripts',
                 'label' => __(
                     'Add trustmary script automatically',
-                    Trustmary_Widgets::$translate_domain
+                    'trustmary-widgets'
                 )
             )
         );
@@ -235,7 +235,7 @@ class Trustmary_Settings
                         'API_KEY_INVALID',
                         __(
                             'API key is invalid.',
-                            Trustmary_Widgets::$translate_domain
+                            'trustmary-widgets'
                         ),
                         'error'
                     );
@@ -278,7 +278,7 @@ class Trustmary_Settings
     {
         $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] :  __(
             'Organization ID will be fetched automatically using API key.',
-            Trustmary_Widgets::$translate_domain
+            'trustmary-widgets'
         );
     ?>
         <p><strong><?php echo $val; ?></strong></p>
@@ -299,13 +299,13 @@ class Trustmary_Settings
         <p>
             <label>
                 <input type="radio" class="toggle-script-block" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="1" <?php echo $val ? 'checked="checked"' : ''; ?>>
-                <span><?php _e('Yes (Scripts will be added automatically)', Trustmary_Widgets::$translate_domain); ?></span>
+                <span><?php _e('Yes (Scripts will be added automatically)', 'trustmary-widgets'); ?></span>
             </label>
         </p>
         <p>
             <label>
                 <input type="radio" class="toggle-script-block" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="0" <?php echo !$val ? 'checked="checked"' : ''; ?>>
-                <span><?php _e('No (I want to add scripts myself, see below)', Trustmary_Widgets::$translate_domain); ?></span>
+                <span><?php _e('No (I want to add scripts myself, see below)', 'trustmary-widgets'); ?></span>
             </label>
         </p>
         <p id="trustmary-script" style="display: <?php echo !$val ? 'block' : 'none'; ?>;">

@@ -1,0 +1,151 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Trustmary\n"
+"POT-Creation-Date: 2022-07-01 20:28+0300\n"
+"PO-Revision-Date: 2022-07-01 20:28+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: trustmary.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/pages.php:57 trustmary.php:121
+msgid "Dashboard"
+msgstr ""
+
+#: includes/pages.php:60
+msgid "You are good to go!"
+msgstr ""
+
+#: includes/pages.php:61
+msgid ""
+"You can now create popups, review widgets, lead generation forms an d review "
+"gathering forms inside Trustmary!"
+msgstr ""
+
+#: includes/pages.php:62
+msgid "Go to Trustmary"
+msgstr ""
+
+#: includes/pages.php:63 includes/pages.php:82 trustmary.php:122
+msgid "Popups"
+msgstr ""
+
+#: includes/pages.php:64 includes/pages.php:96 trustmary.php:123
+msgid "Inline widgets"
+msgstr ""
+
+#: includes/pages.php:65 includes/pages.php:115 trustmary.php:124
+msgid "Experiments"
+msgstr ""
+
+#: includes/pages.php:66 includes/pages.php:132 trustmary.php:125
+msgid "Gather reviews"
+msgstr ""
+
+#: includes/pages.php:68
+msgid "Sign Up for Free"
+msgstr ""
+
+#: includes/pages.php:69
+msgid "Sign up!"
+msgstr ""
+
+#: includes/pages.php:70
+msgid "Already have an account?"
+msgstr ""
+
+#: includes/pages.php:71
+msgid "Set up API key here"
+msgstr ""
+
+#: includes/pages.php:83
+msgid "Create a new popup now!"
+msgstr ""
+
+#: includes/pages.php:84
+msgid "Create new popup!"
+msgstr ""
+
+#: includes/pages.php:97 includes/pages.php:116
+msgid "You can copy the shortcode by clicking the shortcode field."
+msgstr ""
+
+#: includes/pages.php:100 includes/pages.php:119
+msgid "ID"
+msgstr ""
+
+#: includes/pages.php:101 includes/pages.php:120
+msgid "Name"
+msgstr ""
+
+#: includes/pages.php:102 includes/pages.php:121
+msgid "Shortcode"
+msgstr ""
+
+#: includes/pages.php:133
+msgid "Create review gathering form and gather more reviews!"
+msgstr ""
+
+#: includes/pages.php:134
+msgid "Create new review form!"
+msgstr ""
+
+#: includes/settings.php:137 includes/settings.php:144
+msgid "API key"
+msgstr ""
+
+#: includes/settings.php:155 includes/settings.php:162
+msgid "Organization ID"
+msgstr ""
+
+#: includes/settings.php:173
+msgid "Add Trustmary scripts automatically"
+msgstr ""
+
+#: includes/settings.php:180
+msgid "Add trustmary script automatically"
+msgstr ""
+
+#: includes/settings.php:237
+msgid "API key is invalid."
+msgstr ""
+
+#: includes/settings.php:280
+msgid "Organization ID will be fetched automatically using API key."
+msgstr ""
+
+#: includes/settings.php:302
+msgid "Yes (Scripts will be added automatically)"
+msgstr ""
+
+#: includes/settings.php:308
+msgid "No (I want to add scripts myself, see below)"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Trustmary"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://trustmary.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Display Trustmary Widgets and Experiments on your site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Samu Aaltonen"
+msgstr ""
