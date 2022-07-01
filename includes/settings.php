@@ -34,7 +34,7 @@ class Trustmary_Settings
      *
      * @var string
      */
-    private $_settings_menu_slug = 'trustmary_widgets';
+    private $_settings_menu_slug = 'trustmary-settings';
 
     /**
      * Identifier for config array to be stored in WP options

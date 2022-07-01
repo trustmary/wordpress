@@ -21,6 +21,30 @@ class Trustmary_Pages
     public function __construct($config)
     {
         $this->_config = $config;
+
+        add_action('admin_init', array($this, 'check_settings'));
+    }
+
+    /**
+     * Checks if api has been set successfully before letting user to plugin subpages. 
+     * If not, redirects the user to settinsg page.
+     *
+     * @return void
+     */
+    public function check_settings()
+    {
+        if (!in_array($_GET['page'], array(
+            'trustmary-popups',
+            'trustmary-inline',
+            'trustmary-experiments',
+            'trustmary-reviews'
+        )))
+            return;
+
+        if (!isset($this->_config['api_key']) || !$this->_config['api_key']) {
+            wp_redirect(admin_url('admin.php?page=trustmary-settings'));
+            exit;
+        }
     }
 
     /**
@@ -42,9 +66,9 @@ class Trustmary_Pages
                 . '<a href="' . admin_url('admin.php?page=trustmary-reviews') . '" class="button button-primary">' . __('Gather reviews', Trustmary_Widgets::$translate_domain) . '</a> ';
         } else {
             echo '<h3>' . __('Sign Up for Free', Trustmary_Widgets::$translate_domain) . '</h3>'
-            . '<a href="https://app.trustmary.com/register" target="_blank" class="button button-primary">' . __('Sign up!', Trustmary_Widgets::$translate_domain) . '</a> ';
+                . '<a href="https://app.trustmary.com/register" target="_blank" class="button button-primary">' . __('Sign up!', Trustmary_Widgets::$translate_domain) . '</a> ';
             echo '<h3>' . __('Already have an account?', Trustmary_Widgets::$translate_domain) . '</h3>'
-            . '<a href="' . admin_url('admin.php?page=trustmary-settings') . '" class="button button-primary">' . __('Set up API key here', Trustmary_Widgets::$translate_domain) . '</a> ';
+                . '<a href="' . admin_url('admin.php?page=trustmary-settings') . '" class="button button-primary">' . __('Set up API key here', Trustmary_Widgets::$translate_domain) . '</a> ';
         }
     }
 
@@ -55,9 +79,9 @@ class Trustmary_Pages
      */
     public function popups()
     {
-?>
-        <h1><?php _e('Popups', Trustmary_Widgets::$translate_domain); ?></h1>
-    <?php
+        echo '<h1>' . __('Popups', Trustmary_Widgets::$translate_domain) . '</h1>'
+            . '<h3>' . __('Create a new popup now!', Trustmary_Widgets::$translate_domain) . '</h3>'
+            . '<a href="https://app.trustmary.com/widget/create" target="_blank" class="button button-primary">' . __('Create new popup!', Trustmary_Widgets::$translate_domain) . '</a>';
     }
 
     /**
@@ -67,7 +91,7 @@ class Trustmary_Pages
      */
     public function inline()
     {
-    ?>
+?>
         <h1><?php _e('Inline widgets', Trustmary_Widgets::$translate_domain); ?></h1>
     <?php
     }
@@ -81,7 +105,7 @@ class Trustmary_Pages
     {
     ?>
         <h1><?php _e('Experiments', Trustmary_Widgets::$translate_domain); ?></h1>
-    <?php
+<?php
     }
 
     /**
@@ -91,8 +115,8 @@ class Trustmary_Pages
      */
     public function reviews()
     {
-    ?>
-        <h1><?php _e('Gather reviews', Trustmary_Widgets::$translate_domain); ?></h1>
-<?php
+        echo '<h1>' . __('Gather reviews', Trustmary_Widgets::$translate_domain) . '</h1>'
+            . '<h3>' . __('Create review gathering form and gather more reviews!', Trustmary_Widgets::$translate_domain) . '</h3>'
+            . '<a href="https://app.trustmary.com/survey/create/testimonial" target="_blank" class="button button-primary">' . __('Create new review form!', Trustmary_Widgets::$translate_domain) . '</a>';
     }
 }
