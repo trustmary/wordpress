@@ -214,7 +214,25 @@ class Trustmary_Settings
                     $value = $old_values[$key];
                     continue;
                 }
+
+                $key_test = Trustmary_Connect::test_apikey($value);
+
+                if (!$key_test) {
+                    add_settings_error(
+                        $this->_config_idenfifier,
+                        'API_KEY_INVALID',
+                        __(
+                            'API key is invalid.',
+                            Trustmary_Widgets::$translate_domain
+                        ),
+                        'error'
+                    );
+                    $value = '';
+                    continue;
+                }
+
                 $value = Trustmary_Helper::encrypt($value);
+                $updated_values['organization_id'] = $key_test;
             }
         }
 
@@ -245,7 +263,7 @@ class Trustmary_Settings
      */
     public function callback_input_organization_id($args)
     {
-        $val = isset($this->_config[$args['organization_id']]) ? $this->_config[$args['organization_id']] :  __(
+        $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] :  __(
             'Organization ID will be fetched automatically using API key.',
             Trustmary_Widgets::$translate_domain
         );
