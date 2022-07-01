@@ -320,21 +320,6 @@ class Trustmary_Settings
 </script>
 "); ?></textarea>
         </p>
-        <script type="text/javascript">
-            const radios = document.querySelectorAll('.toggle-script-block');
-            const script_block = document.getElementById('trustmary-script');
-
-            function toggle_script_block(event) {
-                if (parseInt(this.value) === 1)
-                    script_block.style.display = 'none';
-                else
-                    script_block.style.display = 'block';
-            }
-
-            radios.forEach((el) => {
-                el.addEventListener('change', toggle_script_block);
-            });
-        </script>
 <?php
     }
 }

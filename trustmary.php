@@ -132,7 +132,8 @@ class Trustmary_Widgets
      */
     public function admin_styles()
     {
-        wp_enqueue_style('admin-styles', plugins_url('/assets/css/admin.css', __FILE__));
+        wp_enqueue_style('trustmary-admin-styles', plugins_url('/assets/css/admin.css', __FILE__));
+        wp_enqueue_script('trustmary-admin-scripts', plugins_url('/assets/js/admin.js', __FILE__), array(), false, true);
     }
 
     /**
