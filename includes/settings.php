@@ -139,6 +139,24 @@ class Trustmary_Settings
         );
 
         /**
+         * Adds organization_id option
+         */
+        add_settings_field(
+            'organization_id',
+            __('Organization ID', 'trustmary-widgets'),
+            array($this, 'callback_input_organization_id'),
+            $this->_config_idenfifier,
+            $this->_settings_group,
+            array(
+                'name' => 'organization_id',
+                'label' => __(
+                    'Organization ID',
+                    Trustmary_Widgets::$translate_domain
+                )
+            )
+        );
+
+        /**
          * Adds radio option to enable/disable automatic script insertion
          */
         add_settings_field(
@@ -216,6 +234,23 @@ class Trustmary_Settings
         <p>
             <input type="text" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="<?php echo $val; ?>" style="min-width:280px;">
         </p>
+    <?php
+    }
+
+    /**
+     * Callback function for organization ID input field
+     *
+     * @param array $args
+     * @return void
+     */
+    public function callback_input_organization_id($args)
+    {
+        $val = isset($this->_config[$args['organization_id']]) ? $this->_config[$args['organization_id']] :  __(
+            'Organization ID will be fetched automatically using API key.',
+            Trustmary_Widgets::$translate_domain
+        );
+    ?>
+        <p><strong><?php echo $val; ?></strong></p>
     <?php
     }
 
