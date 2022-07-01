@@ -21,11 +21,18 @@ defined('ABSPATH') or die('No');
 class Trustmary_Widgets
 {
     /**
+     * Identifier for config array to be stored in WP options
+     *
+     * @var string
+     */
+    private $_config_idenfifier = 'trustmary_widgets_config';
+
+    /**
      * An array of plugin configuration
      *
      * @var array
      */
-    private $config;
+    private $_config;
 
     /**
      * Constructor
@@ -38,9 +45,9 @@ class Trustmary_Widgets
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
 
         include(plugin_dir_path(__FILE__) . 'includes/settings.php');
-        $this->config = get_option('trustmary_widgets_config');
+        $this->_config = get_option($this->_config_idenfifier);
 
-        new Trustmary_Settings();
+        new Trustmary_Settings($this->_config_idenfifier, $this->_config);
     }
 
     /**
@@ -68,7 +75,7 @@ class Trustmary_Widgets
      */
     public function deactivate()
     {
-        delete_option('trustmary_widgets_config');
+        delete_option($this->_config_idenfifier);
     }
 }
 
