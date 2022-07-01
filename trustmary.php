@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Trustmary Widgets
  * Plugin URI: https://trustmary.com/
@@ -12,7 +13,7 @@
 
 /**
  * Prevent direct access to this file
-*/
+ */
 defined('ABSPATH') or die('No');
 
 /**
@@ -35,6 +36,13 @@ class Trustmary_Widgets
     private $_config;
 
     /**
+     * Domain for translations
+     *
+     * @var string
+     */
+    public static $translate_domain = 'trustmary-widgets';
+
+    /**
      * Constructor
      * 
      * Includes plugin files and adds main hooks.
@@ -44,8 +52,12 @@ class Trustmary_Widgets
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
 
+        include(plugin_dir_path(__FILE__) . 'includes/helper.php');
         include(plugin_dir_path(__FILE__) . 'includes/settings.php');
+
         $this->_config = get_option($this->_config_idenfifier);
+        if (!$this->_config)
+            $this->_config = array();
 
         new Trustmary_Settings($this->_config_idenfifier, $this->_config);
     }
