@@ -52,8 +52,9 @@ class Trustmary_Widgets
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
 
-        include(plugin_dir_path(__FILE__) . 'includes/helper.php');
-        include(plugin_dir_path(__FILE__) . 'includes/settings.php');
+        require_once plugin_dir_path(__FILE__) . 'includes/helper.php';
+        require_once plugin_dir_path(__FILE__) . 'includes/connect.php';
+        require_once plugin_dir_path(__FILE__) . 'includes/settings.php';
 
         $this->_config = get_option($this->_config_idenfifier);
         if (!$this->_config)
