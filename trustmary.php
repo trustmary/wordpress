@@ -43,6 +43,13 @@ class Trustmary_Widgets
     public static $translate_domain = 'trustmary-widgets';
 
     /**
+     * An object for admin pages
+     *
+     * @var Trustmary_Pages
+     */
+    private $_pages;
+
+    /**
      * Constructor
      * 
      * Includes plugin files and adds main hooks.
@@ -66,6 +73,7 @@ class Trustmary_Widgets
         add_action('admin_enqueue_scripts', array($this, 'admin_styles'));
 
         new Trustmary_Settings($this->_config_idenfifier, $this->_config);
+        $this->_pages = new Trustmary_Pages($this->_config);
     }
 
     /**
@@ -103,12 +111,12 @@ class Trustmary_Widgets
      */
     public function admin_pages()
     {
-        add_menu_page('Trustmary', 'Trustmary', 'manage_options', 'trustmary-dashboard', array('Trustmary_Pages', 'dashboard'), plugins_url('/assets/images/logo-icon.svg', __FILE__), 30);
-        add_submenu_page('trustmary-dashboard', __('Dashboard', Trustmary_Widgets::$translate_domain),  __('Dashboard', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-dashboard', array('Trustmary_Pages', 'dashboard'));
-        add_submenu_page('trustmary-dashboard', __('Popups', Trustmary_Widgets::$translate_domain),  __('Popups', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-popups', array('Trustmary_Pages', 'popups'));
-        add_submenu_page('trustmary-dashboard', __('Inline widgets', Trustmary_Widgets::$translate_domain),  __('Inline widgets', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-inline', array('Trustmary_Pages', 'inline'));
-        add_submenu_page('trustmary-dashboard', __('Experiments', Trustmary_Widgets::$translate_domain),  __('Experiments', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-experiments', array('Trustmary_Pages', 'experiments'));
-        add_submenu_page('trustmary-dashboard', __('Gather reviews', Trustmary_Widgets::$translate_domain),  __('Gather reviews', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-reviews', array('Trustmary_Pages', 'reviews'));
+        add_menu_page('Trustmary', 'Trustmary', 'manage_options', 'trustmary-dashboard', array($this->_pages, 'dashboard'), plugins_url('/assets/images/logo-icon.svg', __FILE__), 30);
+        add_submenu_page('trustmary-dashboard', __('Dashboard', Trustmary_Widgets::$translate_domain),  __('Dashboard', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-dashboard', array($this->_pages, 'dashboard'));
+        add_submenu_page('trustmary-dashboard', __('Popups', Trustmary_Widgets::$translate_domain),  __('Popups', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-popups', array($this->_pages, 'popups'));
+        add_submenu_page('trustmary-dashboard', __('Inline widgets', Trustmary_Widgets::$translate_domain),  __('Inline widgets', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-inline', array($this->_pages, 'inline'));
+        add_submenu_page('trustmary-dashboard', __('Experiments', Trustmary_Widgets::$translate_domain),  __('Experiments', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-experiments', array($this->_pages, 'experiments'));
+        add_submenu_page('trustmary-dashboard', __('Gather reviews', Trustmary_Widgets::$translate_domain),  __('Gather reviews', Trustmary_Widgets::$translate_domain), 'manage_options', 'trustmary-reviews', array($this->_pages, 'reviews'));
     }
 
     /**
