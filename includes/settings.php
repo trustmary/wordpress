@@ -13,7 +13,7 @@ class Trustmary_Settings
      *
      * @var string
      */
-    private $_settings_title = 'Trustmary Widgets';
+    private $_settings_title = 'Trustmary Settings';
 
     /**
      * Option group name
@@ -208,6 +208,9 @@ class Trustmary_Settings
      */
     public function update_settings($updated_values, $old_values)
     {
+        if (isset($old_values['organization_id']))
+            $updated_values['organization_id'] = $old_values['organization_id'];
+
         foreach ($updated_values as $key => &$value) {
             if ($key === 'api_key') {
                 if (substr_count($value, '*')) {
