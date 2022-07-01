@@ -91,6 +91,7 @@ class Trustmary_Settings
      */
     public function create_admin_page()
     {
+        settings_errors($this->_config_idenfifier);
 ?>
         <h1><?php echo $this->_settings_title; ?></h1>
         <div class="wrap trustmary-widgets-form">
@@ -239,6 +240,7 @@ class Trustmary_Settings
                         'error'
                     );
                     $value = '';
+                    $updated_values['organization_id'] = '';
                     continue;
                 }
 
