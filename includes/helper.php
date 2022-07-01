@@ -68,7 +68,13 @@ class Trustmary_Helper
         return '';
     }
 
-
+    /**
+     * Obfuscates string by replacing characters with star 
+     * that come after the first dash.
+     *
+     * @param [type] $string
+     * @return void
+     */
     public static function obfuscate($string)
     {
         $first_dash = strpos($string, '-');
@@ -76,5 +82,54 @@ class Trustmary_Helper
         $obfuscate = preg_replace('/[^-]/', '*', substr($string, $first_dash + 1));
 
         return $display_start . $obfuscate;
+    }
+
+    /**
+     * Creates WP admin table based on titles and data (rows).
+     *
+     * @param array $titles
+     * @param array $data
+     * @return void
+     */
+    public static function generate_table($titles, $data)
+    {
+?>
+        <table class="wp-list-table widefat fixed striped posts">
+            <thead>
+                <tr>
+                    <?php
+                    foreach ($titles as $key => $label) {
+                    ?>
+                        <th scope="col" id="<?php echo $key; ?>" class="manage-column column-author"><?php echo $label; ?></th>
+                    <?php
+                    }
+                    ?>
+                </tr>
+            </thead>
+            <tbody id="the-list">
+                <?php
+                foreach ($data as $index => $row) {
+                ?>
+                    <tr id="post-<?php echo $index; ?>">
+                        <?php
+                        foreach ($titles as $key => $label) {
+                            if (is_array($row)) {
+                        ?>
+                                <td class="column-<?php echo $key; ?>" data-colname="<?php echo $key; ?>"><?php echo $row[$key]; ?></td>
+                            <?php
+                            } elseif (is_object($row)) {
+                            ?>
+                                <td class="column-<?php echo $key; ?>" data-colname="<?php echo $key; ?>"><?php echo $row->{$key}; ?></td>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+<?php
     }
 }

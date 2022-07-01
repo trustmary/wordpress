@@ -62,4 +62,83 @@ class Trustmary_Connect
 
         return $json->organization_id;
     }
+
+    /**
+     * Returns inline widgets from API
+     *
+     * @param string $key
+     * @return array
+     */
+    public static function fetch_inline_widgets($key)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, self::$api_url . self::$endpoint_widgets);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization: Apikey ' . $key
+        ));
+
+        $return = curl_exec($ch);
+        curl_close($ch);
+
+        if (!$return)
+            return array();
+
+        $json = json_decode($return);
+
+        if (!$json || !isset($json->widgets))
+            return array();
+
+        $widgets = array();
+
+        foreach ($json->widgets as $widget) {
+            if (isset($widget->template_type) && $widget->template_type === 'inpage')
+                $widgets[] = array(
+                    'id' => $widget->id,
+                    'name' => $widget->name,
+                    'shortcode' => '<input type="text" class="copy-shortcode" value="[trustmary_widget id=&quot;' . $widget->id . '&quot;]" readonly>',
+                );
+        }
+
+        return $widgets;
+    }
+
+    /**
+     * Returns experiments from API
+     *
+     * @param string $key
+     * @return array
+     */
+    public static function fetch_experiments($key)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, self::$api_url . self::$endpoint_experiments);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization: Apikey ' . $key
+        ));
+
+        $return = curl_exec($ch);
+        curl_close($ch);
+
+        if (!$return)
+            return array();
+
+        $json = json_decode($return);
+
+        if (!$json || !isset($json->experiments))
+            return array();
+
+        $experiments = array();
+
+        foreach ($json->experiments as $experiment) {
+            $experiments[] = array(
+                'id' => $experiment->id,
+                'name' => $experiment->name,
+                'shortcode' => '<input type="text" class="copy-shortcode" value="[trustmary_experiment id=&quot;' . $experiment->id . '&quot;]" readonly>',
+            );
+        }
+
+        return $experiments;
+    }
 }

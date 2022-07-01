@@ -14,3 +14,8 @@ body[class*=" trustmary_page"] #wpbody {
     background-position: right 20px top 20px;
     background-size: 30px;
 }
+
+.copy-shortcode {
+    width: 100%;
+    cursor: pointer;
+}

@@ -91,9 +91,16 @@ class Trustmary_Pages
      */
     public function inline()
     {
-?>
-        <h1><?php _e('Inline widgets', Trustmary_Widgets::$translate_domain); ?></h1>
-    <?php
+        $widgets = Trustmary_Connect::fetch_inline_widgets(Trustmary_Helper::decrypt($this->_config['api_key']));
+
+        echo '<h1>' . __('Inline widgets', Trustmary_Widgets::$translate_domain) . '</h1>'
+            . '<p>' . __('You can copy the shortcode by clicking the shortcode field.', Trustmary_Widgets::$translate_domain) . '</p>';
+
+        echo Trustmary_Helper::generate_table(array(
+            'id' => __('ID', Trustmary_Widgets::$translate_domain),
+            'name' => __('Name', Trustmary_Widgets::$translate_domain),
+            'shortcode' => __('Shortcode', Trustmary_Widgets::$translate_domain),
+        ), $widgets);
     }
 
     /**
@@ -103,9 +110,16 @@ class Trustmary_Pages
      */
     public function experiments()
     {
-    ?>
-        <h1><?php _e('Experiments', Trustmary_Widgets::$translate_domain); ?></h1>
-<?php
+        $experiments = Trustmary_Connect::fetch_experiments(Trustmary_Helper::decrypt($this->_config['api_key']));
+
+        echo '<h1>' . __('Experiments', Trustmary_Widgets::$translate_domain) . '</h1>'
+            . '<p>' . __('You can copy the shortcode by clicking the shortcode field.', Trustmary_Widgets::$translate_domain) . '</p>';
+
+        echo Trustmary_Helper::generate_table(array(
+            'id' => __('ID', Trustmary_Widgets::$translate_domain),
+            'name' => __('Name', Trustmary_Widgets::$translate_domain),
+            'shortcode' => __('Shortcode', Trustmary_Widgets::$translate_domain),
+        ), $experiments);
     }
 
     /**
