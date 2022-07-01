@@ -55,6 +55,7 @@ class Trustmary_Widgets
         require_once plugin_dir_path(__FILE__) . 'includes/helper.php';
         require_once plugin_dir_path(__FILE__) . 'includes/connect.php';
         require_once plugin_dir_path(__FILE__) . 'includes/settings.php';
+        require_once plugin_dir_path(__FILE__) . 'includes/pages.php';
 
         $this->_config = get_option($this->_config_idenfifier);
         if (!$this->_config)
@@ -63,6 +64,8 @@ class Trustmary_Widgets
         new Trustmary_Settings($this->_config_idenfifier, $this->_config);
 
         add_action('wp_head', array($this, 'add_scripts'));
+        add_action('admin_menu', array($this, 'admin_pages'));
+        add_action('admin_enqueue_scripts', array($this, 'admin_styles'));
     }
 
     /**
@@ -91,6 +94,26 @@ class Trustmary_Widgets
     public function deactivate()
     {
         delete_option($this->_config_idenfifier);
+    }
+
+    /**
+     * Creates admin menu links and pages
+     *
+     * @return void
+     */
+    public function admin_pages()
+    {
+        add_menu_page('Trustmary', 'Trustmary', 'manage_options', 'trustmary-dashboard', array('Trustmary_Pages', 'dashboard'), plugins_url('/assets/images/logo-icon.svg', __FILE__), 30);
+    }
+
+    /**
+     * Adds admin css
+     *
+     * @return void
+     */
+    public function admin_styles()
+    {
+        wp_enqueue_style('admin-styles', plugins_url('/assets/css/admin.css', __FILE__));
     }
 
     /**
