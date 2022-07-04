@@ -58,7 +58,7 @@ class Trustmary_Pages
 
         if (isset($this->_config['api_key']) && $this->_config['api_key']) {
             echo '<h3>' . __('You are good to go!', 'trustmary-widgets') . '</h3>'
-                . '<p>' . __('You can now create popups, review widgets, lead generation forms an d review gathering forms inside Trustmary!', 'trustmary-widgets') . '</p>'
+                . '<p>' . __('You can now create popups, review widgets, lead generation forms and review gathering forms inside Trustmary!', 'trustmary-widgets') . '</p>'
                 . '<a href="https://app.trustmary.com/widget/create" target="_blank" class="button button-primary">' . __('Go to Trustmary', 'trustmary-widgets') . '</a> '
                 . '<a href="' . admin_url('admin.php?page=trustmary-popups') . '" class="button button-primary">' . __('Popups', 'trustmary-widgets') . '</a> '
                 . '<a href="' . admin_url('admin.php?page=trustmary-inline') . '" class="button button-primary">' . __('Inline widgets', 'trustmary-widgets') . '</a> '

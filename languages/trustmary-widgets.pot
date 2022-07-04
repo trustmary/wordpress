@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Trustmary\n"
-"POT-Creation-Date: 2022-07-04 14:15+0300\n"
+"POT-Creation-Date: 2022-07-04 14:46+0300\n"
 "PO-Revision-Date: 2022-07-01 20:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: includes/pages.php:61
 msgid ""
-"You can now create popups, review widgets, lead generation forms an d review "
+"You can now create popups, review widgets, lead generation forms and review "
 "gathering forms inside Trustmary!"
 msgstr ""
 
@@ -122,19 +122,19 @@ msgstr ""
 msgid "Add trustmary script automatically"
 msgstr ""
 
-#: includes/settings.php:255
+#: includes/settings.php:258
 msgid "API key is invalid."
 msgstr ""
 
-#: includes/settings.php:298
+#: includes/settings.php:303
 msgid "Organization info will be fetched automatically using API key."
 msgstr ""
 
-#: includes/settings.php:320
+#: includes/settings.php:325
 msgid "Yes (Scripts will be added automatically)"
 msgstr ""
 
-#: includes/settings.php:326
+#: includes/settings.php:331
 msgid "No (I want to add scripts myself, see below)"
 msgstr ""
 
