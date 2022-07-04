@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Trustmary\n"
-"POT-Creation-Date: 2022-07-01 20:28+0300\n"
+"POT-Creation-Date: 2022-07-04 14:15+0300\n"
 "PO-Revision-Date: 2022-07-01 20:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/pages.php:57 trustmary.php:121
+#: includes/pages.php:57 trustmary.php:124
 msgid "Dashboard"
 msgstr ""
 
@@ -38,19 +38,19 @@ msgstr ""
 msgid "Go to Trustmary"
 msgstr ""
 
-#: includes/pages.php:63 includes/pages.php:82 trustmary.php:122
+#: includes/pages.php:63 includes/pages.php:82 trustmary.php:125
 msgid "Popups"
 msgstr ""
 
-#: includes/pages.php:64 includes/pages.php:96 trustmary.php:123
+#: includes/pages.php:64 includes/pages.php:96 trustmary.php:126
 msgid "Inline widgets"
 msgstr ""
 
-#: includes/pages.php:65 includes/pages.php:115 trustmary.php:124
+#: includes/pages.php:65 includes/pages.php:115 trustmary.php:127
 msgid "Experiments"
 msgstr ""
 
-#: includes/pages.php:66 includes/pages.php:132 trustmary.php:125
+#: includes/pages.php:66 includes/pages.php:132 trustmary.php:128
 msgid "Gather reviews"
 msgstr ""
 
@@ -110,42 +110,44 @@ msgstr ""
 msgid "Organization ID"
 msgstr ""
 
-#: includes/settings.php:173
+#: includes/settings.php:173 includes/settings.php:180
+msgid "Organization Name"
+msgstr ""
+
+#: includes/settings.php:191
 msgid "Add Trustmary scripts automatically"
 msgstr ""
 
-#: includes/settings.php:180
+#: includes/settings.php:198
 msgid "Add trustmary script automatically"
 msgstr ""
 
-#: includes/settings.php:237
+#: includes/settings.php:255
 msgid "API key is invalid."
 msgstr ""
 
-#: includes/settings.php:280
-msgid "Organization ID will be fetched automatically using API key."
+#: includes/settings.php:298
+msgid "Organization info will be fetched automatically using API key."
 msgstr ""
 
-#: includes/settings.php:302
+#: includes/settings.php:320
 msgid "Yes (Scripts will be added automatically)"
 msgstr ""
 
-#: includes/settings.php:308
+#: includes/settings.php:326
 msgid "No (I want to add scripts myself, see below)"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
+#. Author of the plugin/theme
 msgid "Trustmary"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
 msgid "https://trustmary.com/"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid "Display Trustmary Widgets and Experiments on your site."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Samu Aaltonen"
 msgstr ""

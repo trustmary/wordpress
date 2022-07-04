@@ -153,13 +153,31 @@ class Trustmary_Settings
         add_settings_field(
             'organization_id',
             __('Organization ID', 'trustmary-widgets'),
-            array($this, 'callback_input_organization_id'),
+            array($this, 'callback_input_organization'),
             $this->_config_idenfifier,
             $this->_settings_group,
             array(
                 'name' => 'organization_id',
                 'label' => __(
                     'Organization ID',
+                    'trustmary-widgets'
+                )
+            )
+        );
+
+        /**
+         * Adds organization_name option
+         */
+        add_settings_field(
+            'organization_name',
+            __('Organization Name', 'trustmary-widgets'),
+            array($this, 'callback_input_organization'),
+            $this->_config_idenfifier,
+            $this->_settings_group,
+            array(
+                'name' => 'organization_name',
+                'label' => __(
+                    'Organization Name',
                     'trustmary-widgets'
                 )
             )
@@ -220,6 +238,9 @@ class Trustmary_Settings
         if (isset($old_values['organization_id']))
             $updated_values['organization_id'] = $old_values['organization_id'];
 
+        if (isset($old_values['organization_name']))
+            $updated_values['organization_name'] = $old_values['organization_name'];
+
         foreach ($updated_values as $key => &$value) {
             if ($key === 'api_key') {
                 if (substr_count($value, '*')) {
@@ -241,11 +262,13 @@ class Trustmary_Settings
                     );
                     $value = '';
                     $updated_values['organization_id'] = '';
+                    $updated_values['organization_name'] = '';
                     continue;
                 }
 
                 $value = Trustmary_Helper::encrypt($value);
-                $updated_values['organization_id'] = $key_test;
+                $updated_values['organization_id'] = $key_test['organization_id'];
+                $updated_values['organization_name'] = $key_test['organization_name'];
             }
         }
 
@@ -269,15 +292,15 @@ class Trustmary_Settings
     }
 
     /**
-     * Callback function for organization ID input field
+     * Callback function for organization ID and name input fields
      *
      * @param array $args
      * @return void
      */
-    public function callback_input_organization_id($args)
+    public function callback_input_organization($args)
     {
         $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] :  __(
-            'Organization ID will be fetched automatically using API key.',
+            'Organization info will be fetched automatically using API key.',
             'trustmary-widgets'
         );
     ?>

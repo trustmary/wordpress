@@ -35,7 +35,8 @@ class Trustmary_Connect
     public static $endpoint_experiments = 'experiments';
 
     /**
-     * Method for testing API key. Returns organization ID on successful test.
+     * Method for testing API key. Returns an array consisting organization ID 
+     * and organization name on successful test.
      *
      * @param string $key
      * @return string
@@ -57,10 +58,13 @@ class Trustmary_Connect
 
         $json = json_decode($return);
 
-        if (!$json || !isset($json->organization_id))
+        if (!$json || !isset($json->organization_id) || !isset($json->organization_name))
             return;
 
-        return $json->organization_id;
+        return array(
+            'organization_id' => $json->organization_id,
+            'organization_name' => $json->organization_name
+        );
     }
 
     /**
