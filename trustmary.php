@@ -6,7 +6,6 @@
  * Description: Display Trustmary Widgets and Experiments on your site.
  * Version:     1.0.0
  * Author:      Trustmary
- * Author URI:  https://trustmary.com/
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
