@@ -100,7 +100,7 @@ class Trustmary_Connect
                 $widgets[] = array(
                     'id' => $widget->id,
                     'name' => $widget->name,
-                    'shortcode' => '<input type="text" class="copy-shortcode" value="[trustmary_widget id=&quot;' . $widget->id . '&quot;]" readonly>',
+                    'shortcode' => '[trustmary_widget id=&quot;' . $widget->id . '&quot;]',
                 );
         }
 
@@ -139,7 +139,7 @@ class Trustmary_Connect
             $experiments[] = array(
                 'id' => $experiment->id,
                 'name' => $experiment->name,
-                'shortcode' => '<input type="text" class="copy-shortcode" value="[trustmary_experiment id=&quot;' . $experiment->id . '&quot;]" readonly>',
+                'shortcode' => '[trustmary_experiment id=&quot;' . $experiment->id . '&quot;]',
             );
         }
 

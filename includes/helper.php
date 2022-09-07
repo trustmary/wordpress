@@ -93,43 +93,45 @@ class Trustmary_Helper
      */
     public static function generate_table($titles, $data)
     {
-?>
-        <table class="wp-list-table widefat fixed striped posts">
-            <thead>
-                <tr>
-                    <?php
-                    foreach ($titles as $key => $label) {
-                    ?>
-                        <th scope="col" id="<?php echo esc_attr($key); ?>" class="manage-column column-author"><?php echo esc_attr($label); ?></th>
-                    <?php
-                    }
-                    ?>
-                </tr>
-            </thead>
-            <tbody id="the-list">
-                <?php
-                foreach ($data as $index => $row) {
-                ?>
-                    <tr id="post-<?php echo esc_attr($index); ?>">
-                        <?php
-                        foreach ($titles as $key => $label) {
-                            if (is_array($row)) {
-                        ?>
-                                <td class="column-<?php echo esc_attr($key); ?>" data-colname="<?php echo esc_attr($key); ?>"><?php echo esc_attr($row[$key]); ?></td>
-                            <?php
-                            } elseif (is_object($row)) {
-                            ?>
-                                <td class="column-<?php echo esc_attr($key); ?>" data-colname="<?php echo esc_attr($key); ?>"><?php echo esc_attr($row->{$key}); ?></td>
-                        <?php
-                            }
-                        }
-                        ?>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-<?php
+        $table_html = '<table class="wp-list-table widefat fixed striped posts">'
+            . '<thead>'
+            . '<tr>';
+
+
+        foreach ($titles as $key => $label) {
+            $table_html .= '<th scope="col" id="' . esc_attr($key) . '" class="manage-column column-author">' . esc_attr($label) . '</th>';
+        }
+
+        $table_html .= '</tr>'
+            . '</thead>'
+            . '<tbody id="the-list">';
+
+        foreach ($data as $index => $row) {
+            $table_html .= '<tr id="post-' . esc_attr($index) . '">';
+
+            foreach ($titles as $key => $label) {
+                $table_html .= '<td class="column-' . esc_attr($key) . '" data-colname="' . esc_attr($key) . '">';
+
+                if ($key == 'shortcode')
+                    $table_html .= '<input type="text" class="copy-shortcode" value="';
+
+                if (is_array($row))
+                    $table_html .= esc_attr($row[$key]);
+                elseif (is_object($row))
+                    $table_html .= esc_attr($row->{$key});
+
+                if ($key == 'shortcode')
+                    $table_html .= '" readonly>';
+
+                $table_html .= '</td>';
+            }
+
+            $table_html .= '</tr>';
+        }
+
+        $table_html .= '</tbody>'
+            . '</table>';
+
+        return $table_html;
     }
 }
