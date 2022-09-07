@@ -148,15 +148,15 @@ class Trustmary_Widgets
         if (!isset($this->_config['organization_id']) || (isset($this->_config['add_scripts']) && !$this->_config['add_scripts']))
             return;
 
-        echo "<script>(function (w,d,s,o,r,js,fjs) {
+        ?><script>(function (w,d,s,o,r,js,fjs) {
 w[r]=w[r]||function() {(w[r].q = w[r].q || []).push(arguments)}
-w[r]('app', '" . esc_attr($this->_config['organization_id']) . "');
+w[r]('app', '<?php echo esc_attr($this->_config['organization_id']); ?>');
 if(d.getElementById(o)) return;
 js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
 js.id = o; js.src = 'https://embed.trustmary.com/embed.js';
 js.async = 1; fjs.parentNode.insertBefore(js, fjs);
 }(window, document, 'script', 'trustmary-embed', 'tmary'));
-</script>";
+</script><?
     }
 }
 

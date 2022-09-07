@@ -322,13 +322,13 @@ class Trustmary_Settings
         <p>
             <label>
                 <input type="radio" class="toggle-script-block" name="<?php echo esc_attr($this->_config_idenfifier . '[' . $args['name'] . ']'); ?>" value="1" <?php echo esc_attr($val) ? 'checked="checked"' : ''; ?>>
-                <span><?php _e('Yes (Scripts will be added automatically)', 'trustmary-widgets'); ?></span>
+                <span><?php echo esc_attr__('Yes (Scripts will be added automatically)', 'trustmary-widgets'); ?></span>
             </label>
         </p>
         <p>
             <label>
                 <input type="radio" class="toggle-script-block" name="<?php echo esc_attr($this->_config_idenfifier . '[' . $args['name'] . ']'); ?>" value="0" <?php echo !esc_attr($val) ? 'checked="checked"' : ''; ?>>
-                <span><?php _e('No (I want to add scripts myself, see below)', 'trustmary-widgets'); ?></span>
+                <span><?php echo esc_attr__('No (I want to add scripts myself, see below)', 'trustmary-widgets'); ?></span>
             </label>
         </p>
         <p id="trustmary-script" style="display: <?php echo !esc_attr($val) ? 'block' : 'none'; ?>;">
