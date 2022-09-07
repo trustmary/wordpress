@@ -100,7 +100,7 @@ class Trustmary_Helper
                     <?php
                     foreach ($titles as $key => $label) {
                     ?>
-                        <th scope="col" id="<?php echo $key; ?>" class="manage-column column-author"><?php echo $label; ?></th>
+                        <th scope="col" id="<?php echo esc_attr($key); ?>" class="manage-column column-author"><?php echo esc_attr($label); ?></th>
                     <?php
                     }
                     ?>
@@ -110,16 +110,16 @@ class Trustmary_Helper
                 <?php
                 foreach ($data as $index => $row) {
                 ?>
-                    <tr id="post-<?php echo $index; ?>">
+                    <tr id="post-<?php echo esc_attr($index); ?>">
                         <?php
                         foreach ($titles as $key => $label) {
                             if (is_array($row)) {
                         ?>
-                                <td class="column-<?php echo $key; ?>" data-colname="<?php echo $key; ?>"><?php echo $row[$key]; ?></td>
+                                <td class="column-<?php echo esc_attr($key); ?>" data-colname="<?php echo esc_attr($key); ?>"><?php echo esc_attr($row[$key]); ?></td>
                             <?php
                             } elseif (is_object($row)) {
                             ?>
-                                <td class="column-<?php echo $key; ?>" data-colname="<?php echo $key; ?>"><?php echo $row->{$key}; ?></td>
+                                <td class="column-<?php echo esc_attr($key); ?>" data-colname="<?php echo esc_attr($key); ?>"><?php echo esc_attr($row->{$key}); ?></td>
                         <?php
                             }
                         }

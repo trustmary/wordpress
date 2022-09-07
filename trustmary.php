@@ -150,7 +150,7 @@ class Trustmary_Widgets
 
         echo "<script>(function (w,d,s,o,r,js,fjs) {
 w[r]=w[r]||function() {(w[r].q = w[r].q || []).push(arguments)}
-w[r]('app', '" . $this->_config['organization_id'] . "');
+w[r]('app', '" . esc_attr($this->_config['organization_id']) . "');
 if(d.getElementById(o)) return;
 js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
 js.id = o; js.src = 'https://embed.trustmary.com/embed.js';

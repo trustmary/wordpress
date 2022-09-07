@@ -93,7 +93,7 @@ class Trustmary_Settings
     {
         settings_errors($this->_config_idenfifier);
 ?>
-        <h1><?php echo $this->_settings_title; ?></h1>
+        <h1><?php echo esc_attr($this->_settings_title); ?></h1>
         <div class="wrap trustmary-widgets-form">
             <form method="post" action="options.php">
                 <?php
@@ -286,7 +286,7 @@ class Trustmary_Settings
         $val = isset($this->_config[$args['name']]) ? Trustmary_Helper::obfuscate(Trustmary_Helper::decrypt($this->_config[$args['name']])) : '';
     ?>
         <p>
-            <input type="text" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="<?php echo $val; ?>" style="min-width:280px;">
+            <input type="text" name="<?php echo esc_attr($this->_config_idenfifier . '[' . $args['name'] . ']'); ?>" value="<?php echo esc_attr($val); ?>" style="min-width:280px;">
         </p>
     <?php
     }
@@ -304,7 +304,7 @@ class Trustmary_Settings
             'trustmary-widgets'
         );
     ?>
-        <p><strong><?php echo $val; ?></strong></p>
+        <p><strong><?php echo esc_attr($val); ?></strong></p>
     <?php
     }
 
@@ -321,20 +321,20 @@ class Trustmary_Settings
     ?>
         <p>
             <label>
-                <input type="radio" class="toggle-script-block" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="1" <?php echo $val ? 'checked="checked"' : ''; ?>>
+                <input type="radio" class="toggle-script-block" name="<?php echo esc_attr($this->_config_idenfifier . '[' . $args['name'] . ']'); ?>" value="1" <?php echo esc_attr($val) ? 'checked="checked"' : ''; ?>>
                 <span><?php _e('Yes (Scripts will be added automatically)', 'trustmary-widgets'); ?></span>
             </label>
         </p>
         <p>
             <label>
-                <input type="radio" class="toggle-script-block" name="<?php echo $this->_config_idenfifier . '[' . $args['name'] . ']'; ?>" value="0" <?php echo !$val ? 'checked="checked"' : ''; ?>>
+                <input type="radio" class="toggle-script-block" name="<?php echo esc_attr($this->_config_idenfifier . '[' . $args['name'] . ']'); ?>" value="0" <?php echo !esc_attr($val) ? 'checked="checked"' : ''; ?>>
                 <span><?php _e('No (I want to add scripts myself, see below)', 'trustmary-widgets'); ?></span>
             </label>
         </p>
-        <p id="trustmary-script" style="display: <?php echo !$val ? 'block' : 'none'; ?>;">
+        <p id="trustmary-script" style="display: <?php echo !esc_attr($val) ? 'block' : 'none'; ?>;">
             <textarea name="scripts" style="width: 480px;height:210px;cursor:pointer;" onClick="this.select();" readonly><?php echo htmlentities("<script>(function (w,d,s,o,r,js,fjs) {
     w[r]=w[r]||function() {(w[r].q = w[r].q || []).push(arguments)}
-    w[r]('app', '" . $organization_id . "');
+    w[r]('app', '" . esc_attr($organization_id) . "');
     if(d.getElementById(o)) return;
     js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
     js.id = o; js.src = 'https://embed.trustmary.com/embed.js';
