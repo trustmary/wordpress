@@ -43,20 +43,20 @@ class Trustmary_Connect
      */
     public static function test_apikey($key)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$api_url . self::$endpoint_test);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Authorization: Apikey ' . $key
-        ));
+        $response = wp_remote_get(
+            self::$api_url . self::$endpoint_test,
+            array(
+                'timeout' => 30,
+                'headers' => array(
+                    'Authorization' => 'Apikey ' . $key
+                )
+            )
+        );
 
-        $return = curl_exec($ch);
-        curl_close($ch);
-
-        if (!$return)
+        if (is_wp_error($response))
             return;
 
-        $json = json_decode($return);
+        $json = json_decode(wp_remote_retrieve_body($response));
 
         if (!$json || !isset($json->organization_id) || !isset($json->organization_name))
             return;
@@ -75,20 +75,20 @@ class Trustmary_Connect
      */
     public static function fetch_inline_widgets($key)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$api_url . self::$endpoint_widgets);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Authorization: Apikey ' . $key
-        ));
+        $response = wp_remote_get(
+            self::$api_url . self::$endpoint_widgets,
+            array(
+                'timeout' => 30,
+                'headers' => array(
+                    'Authorization' => 'Apikey ' . $key
+                )
+            )
+        );
 
-        $return = curl_exec($ch);
-        curl_close($ch);
+        if (is_wp_error($response))
+            return;
 
-        if (!$return)
-            return array();
-
-        $json = json_decode($return);
+        $json = json_decode(wp_remote_retrieve_body($response));
 
         if (!$json || !isset($json->widgets))
             return array();
@@ -115,20 +115,20 @@ class Trustmary_Connect
      */
     public static function fetch_experiments($key)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$api_url . self::$endpoint_experiments);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Authorization: Apikey ' . $key
-        ));
+        $response = wp_remote_get(
+            self::$api_url . self::$endpoint_experiments,
+            array(
+                'timeout' => 30,
+                'headers' => array(
+                    'Authorization' => 'Apikey ' . $key
+                )
+            )
+        );
 
-        $return = curl_exec($ch);
-        curl_close($ch);
+        if (is_wp_error($response))
+            return;
 
-        if (!$return)
-            return array();
-
-        $json = json_decode($return);
+        $json = json_decode(wp_remote_retrieve_body($response));
 
         if (!$json || !isset($json->experiments))
             return array();
