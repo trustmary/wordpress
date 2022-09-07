@@ -120,11 +120,11 @@ class Trustmary_Widgets
     public function admin_pages()
     {
         add_menu_page('Trustmary', 'Trustmary', 'manage_options', 'trustmary-dashboard', array($this->_pages, 'dashboard'), plugins_url('/assets/images/logo-icon.svg', __FILE__), 30);
-        add_submenu_page('trustmary-dashboard', __('Dashboard', 'trustmary-widgets'),  __('Dashboard', 'trustmary-widgets'), 'manage_options', 'trustmary-dashboard', array($this->_pages, 'dashboard'));
-        add_submenu_page('trustmary-dashboard', __('Popups', 'trustmary-widgets'),  __('Popups', 'trustmary-widgets'), 'manage_options', 'trustmary-popups', array($this->_pages, 'popups'));
-        add_submenu_page('trustmary-dashboard', __('Inline widgets', 'trustmary-widgets'),  __('Inline widgets', 'trustmary-widgets'), 'manage_options', 'trustmary-inline', array($this->_pages, 'inline'));
-        add_submenu_page('trustmary-dashboard', __('Experiments', 'trustmary-widgets'),  __('Experiments', 'trustmary-widgets'), 'manage_options', 'trustmary-experiments', array($this->_pages, 'experiments'));
-        add_submenu_page('trustmary-dashboard', __('Gather reviews', 'trustmary-widgets'),  __('Gather reviews', 'trustmary-widgets'), 'manage_options', 'trustmary-reviews', array($this->_pages, 'reviews'));
+        add_submenu_page('trustmary-dashboard', esc_attr__('Dashboard', 'trustmary-widgets'),  esc_attr__('Dashboard', 'trustmary-widgets'), 'manage_options', 'trustmary-dashboard', array($this->_pages, 'dashboard'));
+        add_submenu_page('trustmary-dashboard', esc_attr__('Popups', 'trustmary-widgets'),  esc_attr__('Popups', 'trustmary-widgets'), 'manage_options', 'trustmary-popups', array($this->_pages, 'popups'));
+        add_submenu_page('trustmary-dashboard', esc_attr__('Inline widgets', 'trustmary-widgets'),  esc_attr__('Inline widgets', 'trustmary-widgets'), 'manage_options', 'trustmary-inline', array($this->_pages, 'inline'));
+        add_submenu_page('trustmary-dashboard', esc_attr__('Experiments', 'trustmary-widgets'),  esc_attr__('Experiments', 'trustmary-widgets'), 'manage_options', 'trustmary-experiments', array($this->_pages, 'experiments'));
+        add_submenu_page('trustmary-dashboard', esc_attr__('Gather reviews', 'trustmary-widgets'),  esc_attr__('Gather reviews', 'trustmary-widgets'), 'manage_options', 'trustmary-reviews', array($this->_pages, 'reviews'));
     }
 
     /**

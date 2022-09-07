@@ -54,21 +54,21 @@ class Trustmary_Pages
      */
     public function dashboard()
     {
-        echo '<h1>' . __('Dashboard', 'trustmary-widgets') . '</h1>';
+        echo '<h1>' . esc_attr__('Dashboard', 'trustmary-widgets') . '</h1>';
 
         if (isset($this->_config['api_key']) && $this->_config['api_key']) {
-            echo '<h3>' . __('You are good to go!', 'trustmary-widgets') . '</h3>'
-                . '<p>' . __('You can now create popups, review widgets, lead generation forms and review gathering forms inside Trustmary!', 'trustmary-widgets') . '</p>'
-                . '<a href="https://app.trustmary.com/widget/create" target="_blank" class="button button-primary">' . __('Go to Trustmary', 'trustmary-widgets') . '</a> '
-                . '<a href="' . admin_url('admin.php?page=trustmary-popups') . '" class="button button-primary">' . __('Popups', 'trustmary-widgets') . '</a> '
-                . '<a href="' . admin_url('admin.php?page=trustmary-inline') . '" class="button button-primary">' . __('Inline widgets', 'trustmary-widgets') . '</a> '
-                . '<a href="' . admin_url('admin.php?page=trustmary-experiments') . '" class="button button-primary">' . __('Experiments', 'trustmary-widgets') . '</a> '
-                . '<a href="' . admin_url('admin.php?page=trustmary-reviews') . '" class="button button-primary">' . __('Gather reviews', 'trustmary-widgets') . '</a> ';
+            echo '<h3>' . esc_attr__('You are good to go!', 'trustmary-widgets') . '</h3>'
+                . '<p>' . esc_attr__('You can now create popups, review widgets, lead generation forms and review gathering forms inside Trustmary!', 'trustmary-widgets') . '</p>'
+                . '<a href="https://app.trustmary.com/widget/create" target="_blank" class="button button-primary">' . esc_attr__('Go to Trustmary', 'trustmary-widgets') . '</a> '
+                . '<a href="' . admin_url('admin.php?page=trustmary-popups') . '" class="button button-primary">' . esc_attr__('Popups', 'trustmary-widgets') . '</a> '
+                . '<a href="' . admin_url('admin.php?page=trustmary-inline') . '" class="button button-primary">' . esc_attr__('Inline widgets', 'trustmary-widgets') . '</a> '
+                . '<a href="' . admin_url('admin.php?page=trustmary-experiments') . '" class="button button-primary">' . esc_attr__('Experiments', 'trustmary-widgets') . '</a> '
+                . '<a href="' . admin_url('admin.php?page=trustmary-reviews') . '" class="button button-primary">' . esc_attr__('Gather reviews', 'trustmary-widgets') . '</a> ';
         } else {
-            echo '<h3>' . __('Sign Up for Free', 'trustmary-widgets') . '</h3>'
-                . '<a href="https://app.trustmary.com/register" target="_blank" class="button button-primary">' . __('Sign up!', 'trustmary-widgets') . '</a> ';
-            echo '<h3>' . __('Already have an account?', 'trustmary-widgets') . '</h3>'
-                . '<a href="' . admin_url('admin.php?page=trustmary-settings') . '" class="button button-primary">' . __('Set up API key here', 'trustmary-widgets') . '</a> ';
+            echo '<h3>' . esc_attr__('Sign Up for Free', 'trustmary-widgets') . '</h3>'
+                . '<a href="https://app.trustmary.com/register" target="_blank" class="button button-primary">' . esc_attr__('Sign up!', 'trustmary-widgets') . '</a> ';
+            echo '<h3>' . esc_attr__('Already have an account?', 'trustmary-widgets') . '</h3>'
+                . '<a href="' . admin_url('admin.php?page=trustmary-settings') . '" class="button button-primary">' . esc_attr__('Set up API key here', 'trustmary-widgets') . '</a> ';
         }
     }
 
@@ -79,9 +79,9 @@ class Trustmary_Pages
      */
     public function popups()
     {
-        echo '<h1>' . __('Popups', 'trustmary-widgets') . '</h1>'
-            . '<h3>' . __('Create a new popup now!', 'trustmary-widgets') . '</h3>'
-            . '<a href="https://app.trustmary.com/widget/create" target="_blank" class="button button-primary">' . __('Create new popup!', 'trustmary-widgets') . '</a>';
+        echo '<h1>' . esc_attr__('Popups', 'trustmary-widgets') . '</h1>'
+            . '<h3>' . esc_attr__('Create a new popup now!', 'trustmary-widgets') . '</h3>'
+            . '<a href="https://app.trustmary.com/widget/create" target="_blank" class="button button-primary">' . esc_attr__('Create new popup!', 'trustmary-widgets') . '</a>';
     }
 
     /**
@@ -93,13 +93,13 @@ class Trustmary_Pages
     {
         $widgets = Trustmary_Connect::fetch_inline_widgets(Trustmary_Helper::decrypt($this->_config['api_key']));
 
-        echo '<h1>' . __('Inline widgets', 'trustmary-widgets') . '</h1>'
-            . '<p>' . __('You can copy the shortcode by clicking the shortcode field.', 'trustmary-widgets') . '</p>';
+        echo '<h1>' . esc_attr__('Inline widgets', 'trustmary-widgets') . '</h1>'
+            . '<p>' . esc_attr__('You can copy the shortcode by clicking the shortcode field.', 'trustmary-widgets') . '</p>';
 
         echo Trustmary_Helper::generate_table(array(
-            'id' => __('ID', 'trustmary-widgets'),
-            'name' => __('Name', 'trustmary-widgets'),
-            'shortcode' => __('Shortcode', 'trustmary-widgets'),
+            'id' => esc_attr__('ID', 'trustmary-widgets'),
+            'name' => esc_attr__('Name', 'trustmary-widgets'),
+            'shortcode' => esc_attr__('Shortcode', 'trustmary-widgets'),
         ), $widgets);
     }
 
@@ -112,13 +112,13 @@ class Trustmary_Pages
     {
         $experiments = Trustmary_Connect::fetch_experiments(Trustmary_Helper::decrypt($this->_config['api_key']));
 
-        echo '<h1>' . __('Experiments', 'trustmary-widgets') . '</h1>'
-            . '<p>' . __('You can copy the shortcode by clicking the shortcode field.', 'trustmary-widgets') . '</p>';
+        echo '<h1>' . esc_attr__('Experiments', 'trustmary-widgets') . '</h1>'
+            . '<p>' . esc_attr__('You can copy the shortcode by clicking the shortcode field.', 'trustmary-widgets') . '</p>';
 
         echo Trustmary_Helper::generate_table(array(
-            'id' => __('ID', 'trustmary-widgets'),
-            'name' => __('Name', 'trustmary-widgets'),
-            'shortcode' => __('Shortcode', 'trustmary-widgets'),
+            'id' => esc_attr__('ID', 'trustmary-widgets'),
+            'name' => esc_attr__('Name', 'trustmary-widgets'),
+            'shortcode' => esc_attr__('Shortcode', 'trustmary-widgets'),
         ), $experiments);
     }
 
@@ -129,8 +129,8 @@ class Trustmary_Pages
      */
     public function reviews()
     {
-        echo '<h1>' . __('Gather reviews', 'trustmary-widgets') . '</h1>'
-            . '<h3>' . __('Create review gathering form and gather more reviews!', 'trustmary-widgets') . '</h3>'
-            . '<a href="https://app.trustmary.com/survey/create/testimonial" target="_blank" class="button button-primary">' . __('Create new review form!', 'trustmary-widgets') . '</a>';
+        echo '<h1>' . esc_attr__('Gather reviews', 'trustmary-widgets') . '</h1>'
+            . '<h3>' . esc_attr__('Create review gathering form and gather more reviews!', 'trustmary-widgets') . '</h3>'
+            . '<a href="https://app.trustmary.com/survey/create/testimonial" target="_blank" class="button button-primary">' . esc_attr__('Create new review form!', 'trustmary-widgets') . '</a>';
     }
 }

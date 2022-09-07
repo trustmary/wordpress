@@ -134,13 +134,13 @@ class Trustmary_Settings
          */
         add_settings_field(
             'api_key',
-            __('API key', 'trustmary-widgets'),
+            esc_attr__('API key', 'trustmary-widgets'),
             array($this, 'callback_input_apikey'),
             $this->_config_idenfifier,
             $this->_settings_group,
             array(
                 'name' => 'api_key',
-                'label' => __(
+                'label' => esc_attr__(
                     'API key',
                     'trustmary-widgets'
                 )
@@ -152,13 +152,13 @@ class Trustmary_Settings
          */
         add_settings_field(
             'organization_id',
-            __('Organization ID', 'trustmary-widgets'),
+            esc_attr__('Organization ID', 'trustmary-widgets'),
             array($this, 'callback_input_organization'),
             $this->_config_idenfifier,
             $this->_settings_group,
             array(
                 'name' => 'organization_id',
-                'label' => __(
+                'label' => esc_attr__(
                     'Organization ID',
                     'trustmary-widgets'
                 )
@@ -170,13 +170,13 @@ class Trustmary_Settings
          */
         add_settings_field(
             'organization_name',
-            __('Organization Name', 'trustmary-widgets'),
+            esc_attr__('Organization Name', 'trustmary-widgets'),
             array($this, 'callback_input_organization'),
             $this->_config_idenfifier,
             $this->_settings_group,
             array(
                 'name' => 'organization_name',
-                'label' => __(
+                'label' => esc_attr__(
                     'Organization Name',
                     'trustmary-widgets'
                 )
@@ -188,13 +188,13 @@ class Trustmary_Settings
          */
         add_settings_field(
             'add_scripts',
-            __('Add Trustmary scripts automatically', 'trustmary-widgets'),
+            esc_attr__('Add Trustmary scripts automatically', 'trustmary-widgets'),
             array($this, 'callback_input_addscripts'),
             $this->_config_idenfifier,
             $this->_settings_group,
             array(
                 'name' => 'add_scripts',
-                'label' => __(
+                'label' => esc_attr__(
                     'Add trustmary script automatically',
                     'trustmary-widgets'
                 )
@@ -254,7 +254,7 @@ class Trustmary_Settings
                     add_settings_error(
                         $this->_config_idenfifier,
                         'API_KEY_INVALID',
-                        __(
+                        esc_attr__(
                             'API key is invalid.',
                             'trustmary-widgets'
                         ),
@@ -299,7 +299,7 @@ class Trustmary_Settings
      */
     public function callback_input_organization($args)
     {
-        $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] :  __(
+        $val = isset($this->_config[$args['name']]) ? $this->_config[$args['name']] :  esc_attr__(
             'Organization info will be fetched automatically using API key.',
             'trustmary-widgets'
         );
