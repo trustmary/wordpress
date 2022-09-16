@@ -16,7 +16,7 @@ Add reviews from different review platforms to your website in minutes, gather n
 +50 ways of showing off your reviews and testimonials on your wordpress site.
 
 ## Importing reviews
-You can import reviews from Facebook, Google, Trustpilot, G2, Capterra, Yelp, Tripadvisor and add them to your website.
+You can import reviews from Facebook, Google, G2, Capterra, Yelp, Tripadvisor and add them to your website.
 
 ## Gathering new reviews and testimonials
 You can gather new reviews and testimonials from your customers with ease with our review gathering form.
