@@ -66,7 +66,7 @@ class Trustmary_Pages
                 . '<a href="' . admin_url('admin.php?page=trustmary-reviews') . '" class="button button-primary">' . esc_attr__('Gather reviews', 'trustmary-widgets') . '</a> ';
         } else {
             echo '<h3>' . esc_attr__('Sign Up for Free', 'trustmary-widgets') . '</h3>'
-                . '<a href="https://app.trustmary.com/register" target="_blank" class="button button-primary">' . esc_attr__('Sign up!', 'trustmary-widgets') . '</a> ';
+                . '<a href="https://app.trustmary.com/register?t=free&s=eyJ1dG1fc291cmNlIjoid29yZHByZXNzIiwidXRtX21lZGl1bSI6InBsdWdpbiIsInV0bV9jYW1wYWlnbiI6InNpZ24tdXAifQ==" target="_blank" class="button button-primary">' . esc_attr__('Sign up!', 'trustmary-widgets') . '</a> ';
             echo '<h3>' . esc_attr__('Already have an account?', 'trustmary-widgets') . '</h3>'
                 . '<a href="' . admin_url('admin.php?page=trustmary-settings') . '" class="button button-primary">' . esc_attr__('Set up API key here', 'trustmary-widgets') . '</a> ';
         }
