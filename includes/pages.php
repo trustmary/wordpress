@@ -33,7 +33,8 @@ class Trustmary_Pages
      */
     public function check_settings()
     {
-        if (!in_array($_GET['page'], array(
+        $page = isset($_GET['page']) ? $_GET['page'] : '';
+        if (!in_array($page, array(
             'trustmary-popups',
             'trustmary-inline',
             'trustmary-experiments',

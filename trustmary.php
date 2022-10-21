@@ -159,7 +159,7 @@ js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
 js.id = o; js.src = 'https://embed.trustmary.com/embed.js';
 js.async = 1; fjs.parentNode.insertBefore(js, fjs);
 }(window, document, 'script', 'trustmary-embed', 'tmary'));
-</script><?
+</script><?php
     }
 }
 
