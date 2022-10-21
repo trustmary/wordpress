@@ -4,7 +4,7 @@
  * Plugin Name: Trustmary
  * Plugin URI:  https://trustmary.com/
  * Description: Display Trustmary Widgets and Experiments on your site.
- * Version:     1.0.4
+ * Version:     1.0.5
  * Tested up to: 6.0
  * Author:      Trustmary
  * Text Domain: trustmary-widgets
