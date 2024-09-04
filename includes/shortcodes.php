@@ -24,7 +24,7 @@ class Trustmary_Shortcodes
         if (!$attributes['id'])
             return;
 
-        return '<div data-trustmary-widget="' . $attributes['id'] . '"></div>';
+        return '<div data-trustmary-widget="' . esc_attr($attributes['id']) . '"></div>';
     }
 
     public function experiment($atts)
@@ -36,6 +36,6 @@ class Trustmary_Shortcodes
         if (!$attributes['id'])
             return;
 
-        return '<div data-trustmary-experiment="' . $attributes['id'] . '"></div>';
+        return '<div data-trustmary-experiment="' . esc_attr($attributes['id']) . '"></div>';
     }
 }
