@@ -2,8 +2,8 @@
 Contributors: trustmary
 Tags: reviews, review slider, testimonials, testimonial slider, star ratings
 Requires at least: 4.2
-Tested up to: 6.4.2
-Stable tag: 1.0.8
+Tested up to: 6.6.1
+Stable tag: 1.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
